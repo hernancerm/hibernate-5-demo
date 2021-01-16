@@ -1,8 +1,8 @@
 package hercerm.persistence.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Movie {
@@ -13,12 +13,15 @@ public class Movie {
 
     private String title;
 
-    private String director;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private Director director;
 
-    // Constructor sin parámetros requerido para reflexión.
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    private Set<Genre> genres = new HashSet<>();
+
     public Movie() {}
 
-    public Movie(String title, String director) {
+    public Movie(String title, Director director) {
         this.title = title;
         this.director = director;
     }
@@ -35,11 +38,11 @@ public class Movie {
         this.title = title;
     }
 
-    public String getDirector() {
-        return director;
+    public void addGenre(Genre genre) {
+        genres.add(genre);
     }
 
-    public void setDirector(String director) {
-        this.director = director;
+    public Set<Genre> getGenres() {
+        return genres;
     }
 }
