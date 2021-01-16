@@ -1,6 +1,10 @@
 # IDE
 .idea/
 *.iml
+.classpath
+.project
+.settings/
 
 # Compilación
 target/
+bin/
