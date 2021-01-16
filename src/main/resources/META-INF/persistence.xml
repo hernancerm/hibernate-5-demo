@@ -1,0 +1,64 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+
+  <persistence-unit name="defaultPersistenceUnit">
+    <description>
+      Unidad de persistencia para demo de Hibernate 5
+    </description>
+
+    <!-- Proveedor de JPA -->
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+    <properties>
+      <!-- Configuración de JPA -->
+      <!-- ******************** -->
+
+      <!--
+      Driver de la base de datos.
+      Este driver es obtenido a partir de un artefacto de Maven.
+      -->
+      <property name="javax.persistence.jdbc.driver"
+                value="com.mysql.jdbc.Driver" />
+      <!-- URL del servidor de la base de datos -->
+      <property name="javax.persistence.jdbc.url"
+                value="jdbc:mysql://localhost:3306/hibernate-5-demo-db" />
+
+      <!-- Credenciales a la BD -->
+      <property name="javax.persistence.jdbc.user"
+                value="root" />
+      <property name="javax.persistence.jdbc.password"
+                value="" />
+
+      <!-- Configuración de Hibernate -->
+      <!-- ************************** -->
+
+      <!-- Mostrar, en salida estándar, el SQL generado por Hibernate. -->
+      <property name="hibernate.show_sql"
+                value="true" />
+
+      <!--
+      DDL son siglas en inglés para "Data Definition Language:
+      Leer más aquí: https://www.w3schools.in/mysql/ddl-dml-dcl/#DDL
+      En breve, DDL abarca, al menos en SQL, las sentencias:
+        CREATE, ALTER, DROP, TRUNCATE, COMMENT y RENAME.
+
+      Esta configuración de Hibernate indica qué hará el framework en torno
+      a las operaciones de DDL. Las opciones más comunes son:
+      - "create": Antes de cada ejecución, elimina el esquema (y sus datos) y crea uno de nuevo.
+      - "update": Actualiza el esquema existente, manteniendo los datos.
+
+      Donde "esquema" se refiere a las tablas de la BD y su estructura.
+      -->
+      <property name="hibernate.hbm2ddl.auto"
+                value="create" />
+
+      <!-- Indica la variación de SQL que Hibernate utiliza. -->
+      <property name="hibernate.dialect"
+                value="org.hibernate.dialect.MySQL5Dialect"/>
+    </properties>
+  </persistence-unit>
+</persistence>
+
